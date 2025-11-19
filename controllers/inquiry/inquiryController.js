@@ -106,6 +106,10 @@ export const postInquiryReply = async (req, res) => {
  const user = await User.findOne({ user_id : user_id });
  const user_name = user.name;
 
+ if (!user_id) {
+   return res.status(401).json({message : "인증필요"})
+ }
+
  const inquiryReply = {
   reply_id : reply_id,
   inquiry_id : inquiry_id,
